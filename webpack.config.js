@@ -1,58 +1,69 @@
 'use strict'
 
-const webpack = require('webpack')
-const webpackTargetElectronRenderer = require('webpack-target-electron-renderer')
 const path = require('path')
+const webpackTargetElectronRenderer = require('webpack-target-electron-renderer')
+const webpack = require('webpack')
 
 const config = {
   entry: [
     'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr',
-    './app/index'
+    path.resolve(__dirname, 'app/app.js')
   ],
-  module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      loaders: ['babel-loader'],
-      exclude: /node_modules/
-    }, {
-      test: /^((?!\.module).)*\.css$/,
-      loaders: [
-        'style-loader',
-        'css-loader?sourceMap'
-      ]
-    }, {
-      test: /\.module\.css$/,
-      loaders: [
-        'style-loader',
-        'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!'
-      ]
-    }]
-  },
   output: {
-    path: path.join(__dirname, 'dist'),
-    publichPath: 'http://localhost:3000/dist/'
+    path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
-    libraryTarget: 'commonjs2'
+    publicPath: 'http://localhost:3000/public/'
   },
-  resolve: {
-    extensions: ['', '.js', '.jsx'],
-    packageMains: ['webpack', 'browser', 'web', 'browserify', ['jam', 'main'], 'main']
+  module: {
+      loaders: [
+          { test: /\.jsx?$/,
+            loader: 'react-hot',
+            exclude: /node_modules/
+          },
+          {
+              test: /\.jsx?$/,
+              loader: 'babel',
+              exclude: /node_modules/,
+              query: {
+                  presets: ['es2015', 'react']
+              }
+          },
+          {
+              test: /\.less$/,
+              loader: 'style!css!less'
+          },
+          {
+              test   : /\.woff|\.woff2|\.svg|.eot|\.ttf/,
+              loader : 'url?prefix=font/&limit=10000'
+          },
+          {
+              test: /.*\.(gif|png|svg)$/i,
+              loaders: [
+                  'file?hash=sha512&digest=hex&name=[hash].[ext]',
+                  'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
+              ]
+          },
+          {
+              test: /\.(jpg)$/,
+              loader: 'url?limit=25000'
+          }
+      ]
   },
-  debug: true,
-  devtool: 'cheap-module-eval-source-map',
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new webpack.DefinePlugin({
-      '__DEV__': true,
-      'process.env': {
-        'NODE_ENV': JSON.stringify('development')
-      }
-    })
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoErrorsPlugin(),
+      new webpack.optimize.DedupePlugin(),
+      new webpack.DefinePlugin({
+          "process.env": {
+          "NODE_ENV": JSON.stringify("development")
+          }
+      })
   ],
-  target:
+  resolve: {
+      extensions: ['', '.js', '.jsx', '.json', '.coffee']
+  }
 }
 
-config.target = webpackTargetElectronRenderer(config);
+config.target = webpackTargetElectronRenderer(config)
 
-module.exports = config;
+module.exports = config
