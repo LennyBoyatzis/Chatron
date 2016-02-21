@@ -18,7 +18,7 @@ export default class ChatRoom extends Component {
           <a href="javascript:;" className="input-link attach"></a>
           <input type="text" ref="msg" />
           <a href="javascript:;" className="input-link smiley"></a>
-          {<button onClick={ () => sendMessage({ content: this.refs.msg.value }) } className="input-link send"></button> }
+          {<button onClick={ () => sendMessage({ content: this.refs.msg.value }) } className="input-link send">Press me now pls hello</button> }
       </div>
     )
   }

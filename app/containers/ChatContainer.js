@@ -6,7 +6,7 @@ import _ from 'lodash'
 import * as actions from '../redux/actions/actions'
 import io from 'socket.io-client'
 
-const socket = io('', {path: 'http://localhost:3001'})
+//const socket = io('', {path: 'http://localhost:3001'})
 
 export default class ChatContainer extends Component {
   render() {
@@ -14,8 +14,9 @@ export default class ChatContainer extends Component {
     return (
       <div className="appWrapper">
         <div className="chatroom">
-          <ChatRoom {...this.props} socket={socket} />
           <FriendsList />
+          {/* <ChatRoom {...this.props} socket={socket} />
+          <FriendsList /> */}
         </div>
       </div>
     )
