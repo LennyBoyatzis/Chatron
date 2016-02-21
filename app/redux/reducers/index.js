@@ -1,8 +1,6 @@
-import { combineReducers } from 'redux'
-import counter from './counter'
+import { combineReducers } from 'redux';
+import { message } from './message';
 
-const rootReducer = combineReducers({
-  counter
-})
-
-export default rootReducer
+export default combineReducers({
+  message
+});
