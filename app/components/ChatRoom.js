@@ -1,4 +1,4 @@
-import React, { Component, PropTyp } from 'react'
+import React, { Component, PropTypes } from 'react'
 import * as actions from '../redux/actions/actions';
 
 export default class ChatRoom extends Component {
@@ -7,13 +7,18 @@ export default class ChatRoom extends Component {
     const { socket, user, dispatch } = this.props
   }
 
+  helloPeople(e) {
+    e.preventDefault()
+    console.log("Hello dude")
+  }
+
   renderChatInput() {
     return (
       <div className="input">
           <a href="javascript:;" className="input-link attach"></a>
           <input type="text" ref="msg" />
           <a href="javascript:;" className="input-link smiley"></a>
-          <button onClick={ () => sendMessage({ content: this.refs.msg.value }) } className="input-link send"></button>
+          {<button onClick={ () => sendMessage({ content: this.refs.msg.value }) } className="input-link send"></button> }
       </div>
     )
   }
@@ -29,7 +34,7 @@ export default class ChatRoom extends Component {
 }
 
 ChatRoom.propTypes = {
-  messages: PropTypes.array.isRequired,
+  messages: PropTypes.object.isRequired,
   socket: PropTypes.object.isRequired,
   dispatch: PropTypes.func.isRequired,
 }

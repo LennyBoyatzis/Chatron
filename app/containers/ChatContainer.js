@@ -23,7 +23,7 @@ export default class ChatContainer extends Component {
 }
 
 ChatContainer.propTypes = {
-  messages: PropTypes.array.isRequired,
+  messages: PropTypes.object.isRequired,
 }
 
 function mapStateToProps(state) {
