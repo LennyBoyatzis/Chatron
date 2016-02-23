@@ -21,7 +21,8 @@ export default class ChatRoom extends Component {
     return (
       <div className="appWrapper">
         <div className="chatroom">
-          <div className="column chat-box">
+        <FriendsList />
+          <div className="chat-box column">
             <ChatHistory messages={ messages }/>
             <ChatInput />
           </div>

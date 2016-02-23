@@ -12,6 +12,8 @@
 @light: #e6e6e6;
 @wrapper: 1000px;
 @blue: #00b0ff;
+@color0: #eceff1; // Appears 2 times
+@color1: #00b0ff; // Appears 2 times
 
 /**
 * Mixins
@@ -66,6 +68,7 @@ html, body {
 }
 
 .column:first-of-type {
+  min-width: 250px;
   flex-grow: 1;
   flex-shrink: 1;
   flex-basis: 0;
@@ -138,4 +141,135 @@ html, body {
             }
         }
     }
+}
+
+/**
+* ChatBubbles Stylin
+*/
+
+.bubble {
+	border-radius: 5px;
+	clear: both;
+	font-size: 16px;
+	margin-bottom: 8px;
+	padding: 13px 14px;
+	position: relative;
+	vertical-align: top;
+	&:before {
+		content: '\00a0';
+		display: block;
+		height: 6px;
+		position: absolute;
+		top: 19px;
+		transform: skew(-58deg);
+		width: 8px;
+	}
+}
+.bubble.you {
+	background-color: @color1;
+	color: #ffffff;
+	float: left;
+	&:before {
+		background-color: @color1;
+		left: -3px;
+	}
+}
+.bubble.me {
+	background-color: @color0;
+	color: #1a1a1a;
+	float: right;
+	&:before {
+		background-color: @color0;
+		right: -3px;
+	}
+}
+
+/**
+* FriendsList Stylin
+*/
+
+@color2: #999999; // Appears 2 times
+@color3: #00b0ff; // Appears 2 times
+@color4: #ffffff; // Appears 4 times
+@color5: #e6e6e6; // Appears 3 times
+@width1: 100%; // Appears 4 times
+
+.friends-list {
+  .people {
+  	width: @width1;
+  	.person {
+      margin-left: -10px;
+  		background-color: @color4;
+  		cursor: pointer;
+  		padding: 12px 10px 16px;
+  		position: relative;
+  		width: 100%;
+  		&:after {
+  			background-color: @color5;
+  			bottom: 0;
+  			content: '';
+  			display: block;
+  			height: 1px;
+  			left: 50%;
+  			position: absolute;
+  			transform: translate(-50%, 0);
+  			width: 100%;
+  		}
+  		img {
+  			border-radius: 50%;
+  			float: left;
+  			height: 40px;
+  			margin-right: 12px;
+  			width: 40px;
+  		}
+  		.name {
+  			color: #1a1a1a;
+  			font-size: 14px;
+  			font-weight: bold;
+  			line-height: 22px;
+  		}
+  		.time {
+  			background-color: @color4;
+  			color: @color2;
+  			font-size: 14px;
+  			padding: 0 0 5px 5px;
+  			position: absolute;
+  			right: 10%;
+  			top: 16px;
+  		}
+  		.preview {
+  			color: @color2;
+  			display: inline-block;
+  			font-size: 14px;
+  			overflow: hidden !important;
+  			text-overflow: ellipsis;
+  			white-space: nowrap;
+  			width: 70%;
+  		}
+  		&:hover {
+  			background-color: @color3;
+  			span {
+  				background: transparent;
+  				color: @color4;
+  			}
+  			after {
+  				display: none;
+  			}
+  		}
+  	}
+  	.person.active {
+  		background-color: @color3;
+  		border: 0;
+  		margin-left: -15px;
+  		margin-top: -1px;
+  		width: @width1;
+  		span {
+  			background: transparent;
+  			color: @color4;
+  		}
+  		&:after {
+  			display: none;
+  		}
+  	}
+  }
 }
