@@ -9,7 +9,7 @@ export default class FriendsList extends Component {
         {
           PEOPLE.map((person) => {
             return (
-              <li className="person" data-chat="person1">
+              <li key={person} className="person" data-chat="person1">
                 <img src="http://s13.postimg.org/ih41k9tqr/img1.jpg" alt="" />
                 <span className="name">Thomas Bangalter</span>
                 <span className="time">2:09 PM</span>
