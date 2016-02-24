@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import * as actions from '../redux/actions/actions'
 import ChatRoomWindow from '../components/ChatRoomWindow'
 import ChatRoomList from '../components/ChatRoomList'
-import socket from '../lib/socket';
+import ChatRoomInput from '../components/ChatRoomInput'
+import socket from '../lib/socket'
 
 export default class ChatRoom extends Component {
 
@@ -22,7 +23,8 @@ export default class ChatRoom extends Component {
           <ChatRoomList users={ users } />
         </div>
         <div className="column chat-box">
-          <ChatRoomWindow users= { users } />
+          { this.props.children }
+          <ChatRoomInput />
         </div>
       </div>
     )

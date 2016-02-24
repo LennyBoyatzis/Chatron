@@ -2,7 +2,31 @@ import _ from 'lodash'
 import deepFreeze from 'deep-freeze'
 import { RECEIVE_MESSAGE } from '../actions/actions'
 
-const initialState = []
+// const initialState = []
+
+const initialState = {
+  '0': [
+    { from: '2', msg: 'hi there'},
+    { from: '0', msg: 'hi how are you doing'},
+    { from: '3', msg: 'hi there'}
+  ],
+  '1': [
+    { from: '1', msg: 'hi there'},
+    { from: '0', msg: 'hi there'},
+    { from: '1', msg: 'hi there'}
+  ],
+  '2': [
+    { from: '0', msg: 'hi there'},
+    { from: '2', msg: 'hi there'},
+    { from: '3', msg: 'hi there'}
+  ],
+  '3': [
+    { from: '1', msg: 'hi there'},
+    { from: '2', msg: 'hi there'},
+    { from: '3', msg: 'hi there'}
+  ]
+}
+
 
 deepFreeze(initialState)
 

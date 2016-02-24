@@ -1,20 +1,17 @@
 import React, { Component } from 'react'
-import ChatRoomInput from './ChatRoomInput'
 import { connect } from 'react-redux'
 
 export default class ChatRoomWindow extends Component {
   render() {
-    const { messages } = this.props
+    const { messages, users } = this.props
+    console.log("what are my messages??", messages)
     return (
       <div>
-        <div>
-          { messages.length > 0 ? messages.map((message, i) => {
-            return (
-              <div className="bubble you" key={ i }>{ message }</div>
-            )
-          }) : null }
-        </div>
-        <ChatRoomInput />
+        { messages.length > 0 ? messages.map((message, i) => {
+          return (
+            <div className="bubble you" key={ i }>{ message }</div>
+          )
+        }) : null }
       </div>
     )
   }

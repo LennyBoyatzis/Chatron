@@ -4,7 +4,7 @@ import { RECEIVE_MESSAGE, LOGIN, LOGOUT } from '../actions/actions'
 
 const initialState = {
   '3': {
-    name: 'Tony Malone',
+    name: 'Molly Malone',
     time: '2:09 PM',
     preview: 'I was wondering...'
   },
@@ -14,9 +14,9 @@ const initialState = {
     preview: 'Youse home for dinner?'
   },
   '1': {
-    name: 'Bob Hawke',
+    name: 'Anna Simpson',
     time: '12:10 PM',
-    preview: 'I am the man'
+    preview: 'I am so cool'
   },
   '0': {
     name: 'Lenny Boyatzis',
@@ -24,7 +24,6 @@ const initialState = {
     preview: 'Hey, how you doing?'
   }
 }
-
 
 deepFreeze(initialState)
 
