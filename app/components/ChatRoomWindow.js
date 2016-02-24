@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Message from './Message'
 
 export default class ChatRoomWindow extends Component {
   render() {
@@ -8,7 +9,7 @@ export default class ChatRoomWindow extends Component {
       <div>
         { messages.length > 0 ? messages.map((message, i) => {
           return (
-            <div className="bubble you" key={ i }>{ message }</div>
+            <Message from={ this.props.users[messages.from] } content={ message.msg } key={ i }/>
           )
         }) : null }
       </div>
@@ -16,22 +17,11 @@ export default class ChatRoomWindow extends Component {
   }
 }
 
-// render() {
-//   this.props.messages.map(message => {
-//     return <Message from={this.props.users[message.from]} content=message.msg />
-//   })
-// }
-
 function mapStateToProps(state, props) {
   return {
     users: state.users,
-    messages: state.messages
+    messages: state.messages[props.params.userId]
   }
 }
-
-// return {
-//   users: state.users,
-//   messages: state.messages[props.routeParams.userId]
-// }
 
 export default connect(mapStateToProps)(ChatRoomWindow)
