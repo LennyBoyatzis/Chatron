@@ -5,6 +5,8 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { Router, hashHistory, Route, IndexRoute } from 'react-router'
 import configureStore from './redux/store'
+import App from './containers/App'
+import Login from './containers/Login'
 import ChatRoom from './containers/ChatRoom'
 
 const store = configureStore()
@@ -12,7 +14,12 @@ const store = configureStore()
 ReactDOM.render((
   <Provider store={store}>
     <Router history={ hashHistory } >
-      <Route path='/' component={ChatRoom} />
+      <Route path='/' component={App} >
+        <IndexRoute component={Login} />
+        <Route path='/chat/users' component={ChatRoom} >
+          <Route path='/chat/users/:userId' component={ChatRoomWindow} />
+        </Route>
+      </Route>
     </Router>
   </Provider>
 ), document.getElementById('app'))

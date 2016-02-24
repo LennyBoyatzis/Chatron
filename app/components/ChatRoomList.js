@@ -4,7 +4,6 @@ const PEOPLE = [1,2,3,4,5]
 export default class FriendsList extends Component {
   render() {
     return (
-      <div className="column friends-list">
       <ul className="people">
         {
           PEOPLE.map((person) => {
@@ -19,7 +18,6 @@ export default class FriendsList extends Component {
           })
         }
       </ul>
-      </div>
     )
   }
 }

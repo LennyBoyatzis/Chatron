@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class ChatHistory extends Component {
+export default class ChatRoomWindow extends Component {
   render() {
     const { messages } = this.props
     return (

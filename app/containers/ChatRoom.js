@@ -1,41 +1,21 @@
 import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import _ from 'lodash'
-import FriendsList from '../components/FriendsList'
-import * as actions from '../redux/actions/actions'
-import ChatInput from '../components/ChatInput'
-import ChatHistory from '../components/ChatHistory'
-import socket from '../lib/socket';
+import Link from 'react-router'
+import ChatRoomInput from '../components/ChatRoomInput'
+import ChatRoomWindow from '../components/ChatRoomWindow'
+import ChatRoomList from '../components/ChatRoomList'
 
-export default class ChatRoom extends Component {
-
-  componentDidMount() {
-    const { dispatch } = this.props
-    socket.on('directMessage', (msg) => {
-      dispatch({ type: 'RECEIVE_MESSAGE', msg })
-    })
-  }
-
+export default class ChatRoomWindow extends Component {
   render() {
-    const { messages } = this.props
     return (
-      <div className="appWrapper">
-        <div className="chatroom">
-        <FriendsList />
-          <div className="chat-box column">
-            <ChatHistory messages={ messages }/>
-            <ChatInput />
-          </div>
+      <div className="chatroom">
+        <div className="column friends-list">
+          <ChatRoomList />
+        </div>
+        <div className="column chat-box">
+          <ChatRoomWindow messages={ messages }/>
+          <ChatRoomInput />
         </div>
       </div>
     )
   }
 }
-
-function mapStateToProps(state, props) {
-  return {
-    messages: state.messages,
-  }
-}
-
-export default connect(mapStateToProps)(ChatRoom)
