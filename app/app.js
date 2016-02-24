@@ -8,6 +8,7 @@ import configureStore from './redux/store'
 import App from './containers/App'
 import Login from './containers/Login'
 import ChatRoom from './containers/ChatRoom'
+import ChatRoomWindow from './components/ChatRoomWindow'
 
 const store = configureStore()
 
