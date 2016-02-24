@@ -2,8 +2,6 @@ import _ from 'lodash'
 import deepFreeze from 'deep-freeze'
 import { RECEIVE_MESSAGE } from '../actions/actions'
 
-// const initialState = []
-
 const initialState = {
   '0': [
     { from: '2', msg: 'hi there'},
@@ -26,7 +24,6 @@ const initialState = {
     { from: '3', msg: 'hi there'}
   ]
 }
-
 
 deepFreeze(initialState)
 

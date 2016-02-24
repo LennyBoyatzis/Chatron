@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 export default class ChatRoomWindow extends Component {
   render() {
     const { messages, users } = this.props
-    console.log("what are my messages??", messages)
     return (
       <div>
         { messages.length > 0 ? messages.map((message, i) => {
