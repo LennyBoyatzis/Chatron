@@ -22,7 +22,7 @@ export default class ChatRoom extends Component {
           <ChatRoomList users={ users } />
         </div>
         <div className="column chat-box">
-          <ChatRoomWindow />
+          <ChatRoomWindow users= { users } />
         </div>
       </div>
     )
@@ -32,7 +32,6 @@ export default class ChatRoom extends Component {
 // <ChatRoomWindow messages={ messages }/>
 
 function mapStateToProps(state, props) {
-  console.log("here is the state coming in")
   return {
     users: state.users,
   }
