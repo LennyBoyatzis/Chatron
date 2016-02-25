@@ -16,7 +16,7 @@ export default class ChatRoom extends Component {
   }
 
   render() {
-    const { users } = this.props
+    const { users, params } = this.props
     return (
       <div className="chatroom">
         <div className="column friends-list">
@@ -24,7 +24,7 @@ export default class ChatRoom extends Component {
         </div>
         <div className="column chat-box">
           { this.props.children }
-          <ChatRoomInput />
+          <ChatRoomInput userId={ params.userId } />
         </div>
       </div>
     )

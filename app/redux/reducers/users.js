@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import deepFreeze from 'deep-freeze'
-import { RECEIVE_MESSAGE, LOGIN, LOGOUT } from '../actions/actions'
+import { RECEIVE_MESSAGE, ADD_USER, REMOVE_USER } from '../actions/actions'
 
 const initialState = {
   '3': {
@@ -29,9 +29,9 @@ deepFreeze(initialState)
 
 export function users(state = initialState, action) {
   switch (action.type) {
-    case LOGIN:
+    case ADD_USER:
       return state
-    case LOGOUT:
+    case REMOVE_USER:
       return state
     default:
       return state

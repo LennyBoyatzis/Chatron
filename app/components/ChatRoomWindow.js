@@ -5,6 +5,7 @@ import Message from './Message'
 export default class ChatRoomWindow extends Component {
   render() {
     const { messages, users } = this.props
+    console.log("messages", messages)
     return (
       <div>
         { messages.length > 0 ? messages.map((message, i) => {
