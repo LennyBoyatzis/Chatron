@@ -8,7 +8,7 @@ export default class ChatRoomWindow extends Component {
     console.log("messages", messages)
     return (
       <div>
-        { messages.length > 0 ? messages.map((message, i) => {
+        { (messages && messages.length > 0) ? messages.map((message, i) => {
           return (
             <Message from={ this.props.users[messages.from] } content={ message.msg } key={ i }/>
           )
@@ -19,6 +19,7 @@ export default class ChatRoomWindow extends Component {
 }
 
 function mapStateToProps(state, props) {
+  console.log('state.messages ----->', state.messages)
   return {
     users: state.users,
     messages: state.messages[props.params.userId]

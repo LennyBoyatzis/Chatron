@@ -2,6 +2,8 @@ import _ from 'lodash'
 import deepFreeze from 'deep-freeze'
 import { RECEIVE_MESSAGE, ADD_USER, REMOVE_USER } from '../actions/actions'
 
+// This part of the state tree should reflect a list of all other users currently in the chat room
+
 const initialState = {
   '3': {
     name: 'Molly Malone',
