@@ -10,7 +10,7 @@ export default class ChatRoomWindow extends Component {
       <div>
         { (messages && messages.length > 0) ? messages.map((message, i) => {
           return (
-            <Message from={ this.props.users[messages.from] } content={ message.msg } key={ i }/>
+            <Message from={ message.from } content={ message.content } key={ i }/>
           )
         }) : null }
       </div>

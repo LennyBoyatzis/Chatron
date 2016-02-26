@@ -8,13 +8,13 @@ import { RECEIVE_MESSAGE } from '../actions/actions'
 const initialState = {
   "1": [
     { from: "0", content: 'Hey, how are you doing'},
-    { from: "1", content: 'Hey, good thanks and you?'},
-    { from: "0", content: 'Pretty good thanks'}
+    { from: "1", content: 'Yeah not too bad'},
+    { from: "0", content: 'Good to hear!'}
   ],
   "2": [
-    { from: "0", content: 'Hey, how are you doing'},
-    { from: "2", content: 'Hey, good thanks and you?'},
-    { from: "0", content: 'Pretty good thanks'}
+    { from: "0", content: 'You going to the game this wkend?'},
+    { from: "2", content: 'Probably not, got a family lunch on'},
+    { from: "0", content: 'Bummer!'}
   ],
   "3": [
     { from: "0", content: 'Hey, how are you doing'},
@@ -22,20 +22,17 @@ const initialState = {
     { from: "0", content: 'Pretty good thanks'}
   ],
   "4": [
-    { from: "0", content: 'Hey, how are you doing'},
-    { from: "4", content: 'Hey, good thanks and you?'},
-    { from: "0", content: 'Pretty good thanks'}
+    { from: "0", content: 'Hey, whats news?'},
+    { from: "4", content: 'I dropped my iphone and broke the screen'},
+    { from: "0", content: 'Ouccch!'}
   ]
 }
-
-const initialState = {}
 
 deepFreeze(initialState)
 
 export function messages(state = initialState, action) {
   switch (action.type) {
     case RECEIVE_MESSAGE:
-    console.log("here is our action", action)
     const { content, userId } = action.msg
       return {
         [userId]: [].concat({ to: userId, content})
@@ -44,5 +41,3 @@ export function messages(state = initialState, action) {
       return state
   }
 }
-
-// [id]: [].concat(state[userId]).concat({ from: userId, msg})

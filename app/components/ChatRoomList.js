@@ -6,7 +6,7 @@ export default class FriendsList extends Component {
   render() {
     const { users } = this.props
     return (
-      <ul className="people">
+      <ul className="people" >
         {
           _.map(users, (user, userId) => {
             return (
