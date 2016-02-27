@@ -10,9 +10,6 @@ export function auth(state = initialState, action) {
   switch (action.type) {
     case ADD_USER:
       const { user, userId } = action.user
-      console.log('action--->', action)
-      console.log('user--->', user)
-      console.log('userId--->', userId)
       return { username: user, userId: userId }
     default:
       return state

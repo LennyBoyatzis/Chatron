@@ -33,11 +33,9 @@ deepFreeze(initialState)
 export function messages(state = initialState, action) {
   switch (action.type) {
     case RECEIVE_MESSAGE:
-      const { content, userId } = action.msg
-      return Object.assign({}, state, { [userId]: state[userId].concat({from: 'id0000', content}) })
+      const { content, toUser, fromUser } = action.msg
+      return Object.assign({}, state, { [toUser]: state[toUser].concat({from: fromUser, content}) })
     default:
       return state
   }
 }
-
-// state[userId].concat({from: "0", content})

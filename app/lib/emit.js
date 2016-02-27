@@ -1,9 +1,9 @@
 import socket from './socket';
 
-export default function sendMessage(message) {
+module.exports.sendMessage = (message) => {
   socket.emit('directMessage', message)
 }
 
-export default function addUser(user) {
+module.exports.addUser = (user) => {
   socket.emit('addUser', user)
 }

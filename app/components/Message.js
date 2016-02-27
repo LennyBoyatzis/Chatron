@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 export default class Message extends Component {
   render () {
-    const { content, fromUser } = this.props
-    if (fromUser === 'id0000') return <div className="bubble you">{ content }</div>
-    return <div className="bubble me">{ content }</div>
+    const { content, fromUser, loggedInUser } = this.props
+    if (fromUser === loggedInUser) return <div className="bubble me">{ content }</div>
+    return <div className="bubble you">{ content }</div>
   }
 }

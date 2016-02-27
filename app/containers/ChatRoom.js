@@ -11,6 +11,7 @@ export default class ChatRoom extends Component {
   componentDidMount() {
     const { dispatch } = this.props
     socket.on('directMessage', (msg) => {
+      console.log("Am I receiving a message???")
       dispatch({ type: 'RECEIVE_MESSAGE', msg })
     })
     socket.on('addUser', (user) => {
@@ -19,15 +20,15 @@ export default class ChatRoom extends Component {
   }
 
   render() {
-    const { users, params } = this.props
+    const { users, params, auth } = this.props
     return (
       <div className="chatroom">
         <div className="column friends-list">
-          <ChatRoomList users={ users } />
+          <ChatRoomList loggedInUser={auth} users={ users } />
         </div>
         <div className="column chat-box">
           { this.props.children }
-          <ChatRoomInput userId={ params.userId } />
+          <ChatRoomInput loggedInUser={auth} userId={ params.userId } />
         </div>
       </div>
     )

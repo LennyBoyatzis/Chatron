@@ -5,6 +5,6 @@ import { auth } from './auth';
 
 export default combineReducers({
   messages,
-  users,
-  auth
+  auth,
+  users
 });

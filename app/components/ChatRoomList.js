@@ -4,11 +4,14 @@ import { Link } from 'react-router'
 
 export default class FriendsList extends Component {
   render() {
-    const { users } = this.props
+    const { users, loggedInUser } = this.props
+    console.log("Here is our loggedInUser", loggedInUser)
+    console.log("Here are our users", users)
     return (
       <ul className="people" >
         {
           _.map(users, (user, userId) => {
+            if (loggedInUser.userId === userId) return null
             return (
               <Link to={ `/chat/users/${userId}` } key={ user.name } >
                 <li className="person" data-chat="person1">

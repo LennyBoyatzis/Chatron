@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link, Navigation } from 'react-router'
 import { FormRow, FormField, FormInput, FileDragAndDrop } from 'elemental'
 import { ADD_USER } from '../redux/actions/actions'
-import addUser from '../lib/emit'
+import { addUser } from '../lib/emit'
 
 export default class Login extends Component {
 

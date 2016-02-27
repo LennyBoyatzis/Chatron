@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react'
-import sendMessage from '../lib/emit'
+import { sendMessage } from '../lib/emit'
 
 export default class ChatInput extends Component {
 
   handleInputChange (e) {
-    const { userId } = this.props
+    const { userId, loggedInUser } = this.props
     if (e.keyCode === 13) {
-      sendMessage({ content: this.refs.msg.value, userId: userId  })
+      sendMessage({ content: this.refs.msg.value, toUser: userId, fromUser: loggedInUser.userId })
       this.refs.msg.value = ''
     }
   }
