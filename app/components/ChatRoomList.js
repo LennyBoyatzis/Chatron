@@ -5,8 +5,6 @@ import { Link } from 'react-router'
 export default class FriendsList extends Component {
   render() {
     const { users, loggedInUser } = this.props
-    console.log("Here is our loggedInUser", loggedInUser)
-    console.log("Here are our users", users)
     return (
       <ul className="people" >
         {

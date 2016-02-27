@@ -11,7 +11,6 @@ export default class ChatRoom extends Component {
   componentDidMount() {
     const { dispatch } = this.props
     socket.on('directMessage', (msg) => {
-      console.log("Am I receiving a message???")
       dispatch({ type: 'RECEIVE_MESSAGE', msg })
     })
     socket.on('addUser', (user) => {
