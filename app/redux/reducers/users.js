@@ -5,22 +5,22 @@ import { RECEIVE_MESSAGE, ADD_USER, REMOVE_USER } from '../actions/actions'
 // This part of the state tree should reflect a list of all other users currently in the chat room
 
 const initialState = {
-  '3': {
+  'id2123': {
     name: 'Molly Malone',
     time: '2:09 PM',
     preview: 'I was wondering...'
   },
-  '2': {
+  'id8910': {
     name: 'Nick Matenaar',
     time: '1:49 PM',
     preview: 'Youse home for dinner?'
   },
-  '1': {
+  'id4567': {
     name: 'Anna Simpson',
     time: '12:10 PM',
     preview: 'I am so cool'
   },
-  '0': {
+  'id0000': {
     name: 'Lenny Boyatzis',
     time: '8:30 AM',
     preview: 'Hey, how you doing?'

@@ -6,25 +6,25 @@ import { RECEIVE_MESSAGE } from '../actions/actions'
 // These messages should only be created once having clicked on a user
 
 const initialState = {
-  "1": [
-    { from: "0", content: 'Hey, how are you doing'},
-    { from: "1", content: 'Yeah not too bad'},
-    { from: "0", content: 'Good to hear!'}
+  "id1234": [
+    { from: "id0000", content: 'Hey, how are you doing'},
+    { from: "id1234", content: 'Yeah not too bad'},
+    { from: "id0000", content: 'Good to hear!'}
   ],
-  "2": [
-    { from: "0", content: 'You going to the game this wkend?'},
-    { from: "2", content: 'Probably not, got a family lunch on'},
-    { from: "0", content: 'Bummer!'}
+  "id4567": [
+    { from: "id0000", content: 'You going to the game this wkend?'},
+    { from: "id4567", content: 'Probably not, got a family lunch on'},
+    { from: "id0000", content: 'Bummer!'}
   ],
-  "3": [
-    { from: "0", content: 'Hey, how are you doing'},
-    { from: "3", content: 'Hey, good thanks and you?'},
-    { from: "0", content: 'Pretty good thanks'}
+  "id8910": [
+    { from: "id0000", content: 'Hey, how are you doing'},
+    { from: "id8910", content: 'Hey, good thanks and you?'},
+    { from: "id0000", content: 'Pretty good thanks'}
   ],
-  "4": [
-    { from: "0", content: 'Hey, whats news?'},
-    { from: "4", content: 'I dropped my iphone and broke the screen'},
-    { from: "0", content: 'Ouccch!'}
+  "id2123": [
+    { from: "id0000", content: 'Hey, whats news?'},
+    { from: "id2123", content: 'I dropped my iphone and broke the screen'},
+    { from: "id0000", content: 'Ouccch!'}
   ]
 }
 
@@ -33,11 +33,13 @@ deepFreeze(initialState)
 export function messages(state = initialState, action) {
   switch (action.type) {
     case RECEIVE_MESSAGE:
-    const { content, userId } = action.msg
-      return {
-        [userId]: [].concat({ to: userId, content})
-      }
+      const { content, userId } = action.msg
+      console.log('userId------>', userId)
+      console.log("state.userId", state['id2123'].concat({from: 'id0000', content}))
+      return Object.assign({}, state, { [userId]: state[userId].concat({from: 'id0000', content}) })
     default:
       return state
   }
 }
+
+// state[userId].concat({from: "0", content})

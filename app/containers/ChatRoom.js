@@ -31,8 +31,6 @@ export default class ChatRoom extends Component {
   }
 }
 
-// <ChatRoomWindow messages={ messages }/>
-
 function mapStateToProps(state, props) {
   return {
     users: state.users,
