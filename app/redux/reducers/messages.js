@@ -34,8 +34,6 @@ export function messages(state = initialState, action) {
   switch (action.type) {
     case RECEIVE_MESSAGE:
       const { content, userId } = action.msg
-      console.log('userId------>', userId)
-      console.log("state.userId", state['id2123'].concat({from: 'id0000', content}))
       return Object.assign({}, state, { [userId]: state[userId].concat({from: 'id0000', content}) })
     default:
       return state

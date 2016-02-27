@@ -1,8 +1,5 @@
 import _ from 'lodash'
 import deepFreeze from 'deep-freeze'
-import { RECEIVE_MESSAGE, ADD_USER, REMOVE_USER } from '../actions/actions'
-
-// This part of the state tree should reflect a list of all other users currently in the chat room
 
 const initialState = {
   'id2123': {
@@ -31,10 +28,6 @@ deepFreeze(initialState)
 
 export function users(state = initialState, action) {
   switch (action.type) {
-    case ADD_USER:
-      return state
-    case REMOVE_USER:
-      return state
     default:
       return state
   }

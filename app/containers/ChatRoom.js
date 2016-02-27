@@ -13,6 +13,9 @@ export default class ChatRoom extends Component {
     socket.on('directMessage', (msg) => {
       dispatch({ type: 'RECEIVE_MESSAGE', msg })
     })
+    socket.on('addUser', (user) => {
+      dispatch({ type: 'ADD_USER', user })
+    })
   }
 
   render() {
@@ -34,6 +37,7 @@ export default class ChatRoom extends Component {
 function mapStateToProps(state, props) {
   return {
     users: state.users,
+    auth: state.auth
   }
 }
 

@@ -7,10 +7,6 @@ export function receiveMessage(message) {
   return { type: RECEIVE_MESSAGE, message };
 }
 
-export function login(user) {
+export function addUser(user) {
   return { type: ADD_USER, user };
-}
-
-export function logout(user) {
-  return { type: REMOVE_USER, user };
 }

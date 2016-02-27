@@ -1,19 +1,19 @@
 import _ from 'lodash'
 import deepFreeze from 'deep-freeze'
-import { ADD_USER, REMOVE_USER } from '../actions/actions'
+import { ADD_USER } from '../actions/actions'
 
-const initialState = {
-  'loggedInUser': 0
-}
+const initialState = {}
 
 deepFreeze(initialState)
 
-export function users(state = initialState, action) {
+export function auth(state = initialState, action) {
   switch (action.type) {
     case ADD_USER:
-      return state
-    case REMOVE_USER:
-      return state
+      const { user, userId } = action.user
+      console.log('action--->', action)
+      console.log('user--->', user)
+      console.log('userId--->', userId)
+      return { username: user, userId: userId }
     default:
       return state
   }
