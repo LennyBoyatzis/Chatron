@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import deepFreeze from 'deep-freeze'
-import { ADD_USER } from '../actions/actions'
+import { ADD_USER, RECEIVE_USERS } from '../actions/actions'
 
 const initialState = {
   'id2123': {
@@ -21,6 +21,10 @@ deepFreeze(initialState)
 
 export function users(state = initialState, action) {
   switch (action.type) {
+    case RECEIVE_USERS:
+      const { users } = action
+      console.log("here are our users", users)
+      return Object.assign({}, state, users )
     case ADD_USER:
       const { user, userId } = action.user
       return Object.assign({}, state, { [userId]: {name: user} })

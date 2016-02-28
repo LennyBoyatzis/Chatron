@@ -196,10 +196,10 @@ html, body {
 @width1: 100%; // Appears 4 times
 
 .friends-list {
+  padding: 0px;
   .people {
   	width: @width1;
   	.person {
-      margin-left: -10px;
   		background-color: @color4;
   		cursor: pointer;
   		padding: 12px 10px 16px;
@@ -306,8 +306,12 @@ html, body {
     text-align: center;
     margin-top: 20px;
   }
-  .form__element {
+  input.form__element {
     margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 2px;
+    border: 1px solid #e5e5e5;
   }
   .FileDragAndDrop {
     margin-top: 15px;
