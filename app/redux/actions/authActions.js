@@ -1,5 +1,5 @@
 import { push } from 'react-router-redux'
-import { SIGN_UP_REQUEST } from '../../constants/ActionTypes'
+import { SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from '../../constants/ActionTypes'
 
 const BASE_URL = 'http://localhost:3001'
 
@@ -7,8 +7,16 @@ export function signup(user) {
   return { type: SIGN_UP_REQUEST, user }
 }
 
-export function signUpRequest() {
+export function signUpRequest(user) {
   return { type: SIGN_UP_REQUEST }
+}
+
+export function signUpSuccess() {
+  return { type: SIGN_UP_SUCCESS }
+}
+
+export function signUpFailure() {
+  return { type: SIGN_UP_FAILURE }
 }
 
 export function signup(user) {
@@ -20,7 +28,9 @@ export function signup(user) {
       body: JSON.stringify(user)
     })
     .then(res => {
-      if (res.ok) dispatch(push('/'))
+      if (!res.ok) dispatch(signUpFailure())
+      dispatch(signUpSuccess())
+      dispatch(push('/'))
     })
     .catch(err => { throw err })
   }
