@@ -7,7 +7,6 @@ export default class App extends Component {
   componentDidMount() {
     const { dispatch } = this.props
     socket.on('receiveUsers', (users) => {
-      console.log("I should be receiving all users", users)
       dispatch({ type: 'RECEIVE_USERS', users })
     })
     socket.on('receiveMessages', (messages) => {
