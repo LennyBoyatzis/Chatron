@@ -15,8 +15,8 @@ export function signUpSuccess() {
   return { type: SIGN_UP_SUCCESS }
 }
 
-export function signUpFailure() {
-  return { type: SIGN_UP_FAILURE }
+export function signUpFailure(msg) {
+  return { type: SIGN_UP_FAILURE, err: msg }
 }
 
 export function signup(user) {
@@ -27,8 +27,10 @@ export function signup(user) {
       headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
       body: JSON.stringify(user)
     })
+    .then(res => res.json())
     .then(res => {
-      if (!res.ok) dispatch(signUpFailure())
+      console.log("res", res.err)
+      if (res.err) dispatch(signUpFailure(res.err))
       dispatch(signUpSuccess())
       dispatch(push('/'))
     })
