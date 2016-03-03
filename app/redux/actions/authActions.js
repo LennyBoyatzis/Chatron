@@ -16,7 +16,7 @@ export function signUpSuccess() {
 }
 
 export function signUpFailure(msg) {
-  return { type: SIGN_UP_FAILURE, err: msg }
+  return { type: SIGN_UP_FAILURE, msg }
 }
 
 export function signup(user) {
@@ -29,8 +29,7 @@ export function signup(user) {
     })
     .then(res => res.json())
     .then(res => {
-      console.log("res", res.err)
-      if (res.err) dispatch(signUpFailure(res.err))
+      if (res.err) return dispatch(signUpFailure({ err: res.err }))
       dispatch(signUpSuccess())
       dispatch(push('/'))
     })
