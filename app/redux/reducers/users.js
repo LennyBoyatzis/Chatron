@@ -23,7 +23,6 @@ export function users(state = initialState, action) {
   switch (action.type) {
     case RECEIVE_USERS:
       const { users } = action
-      console.log("here are our users", users)
       return Object.assign({}, state, users )
     case ADD_USER:
       const { user, userId } = action.user
