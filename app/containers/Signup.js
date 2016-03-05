@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { FormField, FileDragAndDrop, Alert } from 'elemental'
+import { FormField, Alert } from 'elemental'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { signup } from '../redux/actions/authActions'
@@ -28,7 +28,6 @@ export default class Signup extends Component {
         <FormField>
           <input className="form__element" type="text" name="username" placeholder="Enter name" ref="username" ref="username" />
           <input className="form__element" type="text" name="password" placeholder="Enter password" ref="password" ref="password" />
-          <FileDragAndDrop label="Upload Profile Picture" onDrop={() => {console.log('file is loaded')}}/>
         </FormField>
         <div>
           <a className="form__button" onClick={this.handleClick.bind(this)}>Register</a>
