@@ -11,21 +11,24 @@ import { BASE_URL } from '../../constants/App'
 */
 
 export function signup(user) {
+
+  let config = {
+    method: 'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify(user)
+  }
+
   return dispatch => {
     dispatch(signUpRequest())
-    return fetch(`${BASE_URL}/api/signup`, {
-      method: 'post',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify(user)
-    })
-    .then(res => res.json())
-    .then(res => {
-      if (res.err) return dispatch(signUpFailure({ err: res.err }))
-      dispatch(signUpSuccess())
-      dispatch(push('/'))
-    })
-    .catch(err => { throw err })
+    return fetch(`${BASE_URL}/api/signup`, config)
+      .then(res => res.json())
+      .then(res => {
+        if (res.err) return dispatch(signUpFailure({ err: res.err }))
+        dispatch(signUpSuccess())
+        dispatch(push('/'))
+    }).catch(err => { throw err })
   }
+
 }
 
 const signUpRequest = (user) => {
@@ -46,32 +49,6 @@ const signUpFailure = (msg) => {
 * @param { creds } user's credentials incl. username && password
 * @returns { dispatch }
 */
-
-export function loginUser(creds) {
-  console.log("loginUser actionCreator----->")
-  console.log("creds----->", creds)
-  let config = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `username=${creds.username}&password=${creds.password}`
-  }
-
-  return dispatch => {
-    dispatch(requestLogin(creds))
-
-    return fetch(`${BASE_URL}/sessions/create`, config)
-      .then(response => response.json().then(user => ({ user, response })))
-      .then(({ user, response }) => {
-        if (!reponse.ok) {
-          dispatch(loginError(user.message))
-          return Promise.reject(user)
-        } else {
-          localStorage.setItem('id_token', user.id_token)
-          dispatch(loginSucess(user))
-        }
-      }).catch(err => console.log("Error: ", err))
-  }
-}
 
 const loginRequest = (creds) => {
   return {
@@ -97,6 +74,31 @@ const loginError = (message) => {
     isFetching: false,
     isAuthenticated: false,
     message
+  }
+}
+
+export function loginUser(creds) {
+
+  let config = {
+    method: 'POST',
+    headers: { 'Content-Type':'application/x-www-form-urlencoded' },
+    body: `username=${creds.username}&password=${creds.password}`
+  }
+  console.log("hello")
+  return dispatch => {
+    dispatch(loginRequest(creds))
+
+    return fetch(`${BASE_URL}/api/sessions/create`, config )
+      .then(response => response.json().then(user => ({ user, response })))
+      .then(({ user, response }) => {
+        if (!response.ok) {
+          dispatch(loginError(user.message))
+          return Promise.reject(user)
+        } else {
+          localStorage.setItem('id_token', user.id_token)
+          dispatch(loginSucess(user))
+        }
+    }).catch(err => console.log("Error: ", err))
   }
 }
 

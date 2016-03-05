@@ -8,10 +8,11 @@ import { loginUser } from '../redux/actions/authActions'
 export default class Login extends Component {
 
   handleSubmit (e) {
+    const { dispatch } = this.props
     const username = this.refs.username
     const password = this.refs.password
     const creds = { username: username.value.trim(), password: password.value.trim() }
-    loginUser(creds)
+    dispatch(loginUser(creds));
   }
 
   render() {
@@ -22,9 +23,9 @@ export default class Login extends Component {
           <input className="form__element" type="text" name="username" placeholder="Username" ref="username"/>
           <input className="form__element" type="text" name="password" placeholder="Password" ref="password"/>
         </FormField>
-        <div onClick={this.handleSubmit.bind(this)}>
-          <Link to='/chat/users' className="form__button">Go to chatroom</Link>
-        </div>
+        <a onClick={this.handleSubmit.bind(this)} className="form__button">
+          Go to chatroom
+        </a>
         <Link to='/signup' className="form__link">Not a member? Sign up</Link>
       </div>
     )
