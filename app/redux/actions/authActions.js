@@ -50,33 +50,6 @@ const signUpFailure = (msg) => {
 * @returns { dispatch }
 */
 
-const loginRequest = (creds) => {
-  return {
-    type: LOGIN_REQUEST,
-    isFetching: true,
-    isAuthenticated: false,
-    creds
-  }
-}
-
-const loginSucess = (user) => {
-  return {
-    type: LOGIN_SUCCESS,
-    isFetching: false,
-    isAuthenticated: true,
-    id_token: user.id_token
-  }
-}
-
-const loginError = (message) => {
-  return {
-    type: LOGIN_FAILURE,
-    isFetching: false,
-    isAuthenticated: false,
-    message
-  }
-}
-
 export function loginUser(creds) {
 
   let config = {
@@ -84,7 +57,7 @@ export function loginUser(creds) {
     headers: { 'Content-Type':'application/x-www-form-urlencoded' },
     body: `username=${creds.username}&password=${creds.password}`
   }
-  console.log("hello")
+
   return dispatch => {
     dispatch(loginRequest(creds))
 
@@ -96,9 +69,38 @@ export function loginUser(creds) {
           return Promise.reject(user)
         } else {
           localStorage.setItem('id_token', user.id_token)
-          dispatch(loginSucess(user))
+          dispatch(loginSuccess(user))
+          dispatch(push('/chat/users'))
         }
     }).catch(err => console.log("Error: ", err))
+  }
+}
+
+const loginRequest = (creds) => {
+  return {
+    type: LOGIN_REQUEST,
+    isFetching: true,
+    isAuthenticated: false,
+    creds
+  }
+}
+
+const loginSuccess = (user) => {
+  return {
+    type: LOGIN_SUCCESS,
+    isFetching: false,
+    isAuthenticated: true,
+    id_token: user.id_token,
+    user: user.user
+  }
+}
+
+const loginError = (message) => {
+  return {
+    type: LOGIN_FAILURE,
+    isFetching: false,
+    isAuthenticated: false,
+    message
   }
 }
 

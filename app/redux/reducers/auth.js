@@ -37,10 +37,12 @@ export function auth(state = initialState, action) {
       })
 
     case LOGIN_SUCCESS:
+      const { user } = action
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: true,
-        errorMessage: ''
+        errorMessage: '',
+        user
       })
 
     case LOGIN_FAILURE:
