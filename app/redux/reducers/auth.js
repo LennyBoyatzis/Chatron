@@ -22,6 +22,7 @@ export function auth(state = initialState, action) {
           username: null,
           id: null
         },
+        signUpError: true,
         signUpErrorMsg: msg.err
       })
 

@@ -13,9 +13,9 @@ export default class Signup extends Component {
 
   renderErrorMsg () {
     const { auth } = this.props
-    if (!auth) return
+    if (!auth.signUpError) return
     return (
-      <Alert type="danger"><strong>Error:</strong> { auth.msg } </Alert>
+      <Alert type="danger"><strong>Error:</strong> { auth.signUpErrorMsg } </Alert>
     )
   }
 
@@ -32,6 +32,7 @@ export default class Signup extends Component {
         <div>
           <a className="form__button" onClick={this.handleClick.bind(this)}>Register</a>
         </div>
+        <Link to='/' className="form__link">Back to login</Link>
       </div>
     )
   }

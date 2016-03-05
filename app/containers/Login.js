@@ -22,7 +22,7 @@ export default class Login extends Component {
         <div onClick={this.handleSubmit.bind(this)}>
           <Link to='/chat/users' className="form__button">Go to chatroom</Link>
         </div>
-        <Link to='/signup'>Not a member? Sign up</Link>
+        <Link to='/signup' className="form__link">Not a member? Sign up</Link>
       </div>
     )
   }

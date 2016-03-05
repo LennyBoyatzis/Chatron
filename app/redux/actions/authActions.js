@@ -1,23 +1,14 @@
 import { push } from 'react-router-redux'
-import { SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from '../../constants/ActionTypes'
+import { SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE } from '../../constants/ActionTypes'
+import { BASE_URL } from '../../constants/App'
 
-const BASE_URL = 'http://localhost:3001'
 
-export function signup(user) {
-  return { type: SIGN_UP_REQUEST, user }
-}
-
-export function signUpRequest(user) {
-  return { type: SIGN_UP_REQUEST }
-}
-
-export function signUpSuccess() {
-  return { type: SIGN_UP_SUCCESS }
-}
-
-export function signUpFailure(msg) {
-  return { type: SIGN_UP_FAILURE, msg }
-}
+/**
+* Action creator which posts the users signup creds and dispatches either
+* signUpFailure or signUpSuccess
+* @param { user } user's credentials incl. username && password
+* @returns { dispatch }
+*/
 
 export function signup(user) {
   return dispatch => {
@@ -34,5 +25,46 @@ export function signup(user) {
       dispatch(push('/'))
     })
     .catch(err => { throw err })
+  }
+}
+
+const signUpRequest = (user) => {
+  return { type: SIGN_UP_REQUEST }
+}
+
+const signUpSuccess = () => {
+  return { type: SIGN_UP_SUCCESS }
+}
+
+const signUpFailure = (msg) => {
+  return { type: SIGN_UP_FAILURE, msg }
+}
+
+
+
+const loginRequest = (creds) => {
+  return {
+    type: LOGIN_REQUEST,
+    isFetching: true,
+    isAuthenticated: false,
+    creds
+  }
+}
+
+const loginSucess = (user) => {
+  return {
+    type: LOGIN_SUCCESS,
+    isFetching: false,
+    isAuthenticated: true,
+    id_token: user.id_token
+  }
+}
+
+const loginError = (message) => {
+  return {
+    type: LOGIN_FAILURE,
+    isFetching: false,
+    isAuthenticated: false,
+    message
   }
 }
