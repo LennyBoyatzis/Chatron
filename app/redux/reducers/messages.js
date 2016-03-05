@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import deepFreeze from 'deep-freeze'
-import { RECEIVE_MESSAGE } from '../actions/actions'
+import { RECEIVE_MESSAGE } from '../../constants/ActionTypes'
 
 // This part of the state tree needs to reflect all of the logged in users correspondence with other users
 // These messages should only be created once having clicked on a user
@@ -33,6 +33,7 @@ deepFreeze(initialState)
 export function messages(state = initialState, action) {
   switch (action.type) {
     case RECEIVE_MESSAGE:
+      console.log("here is our aciton----->", action)
       const { content, toUser, fromUser } = action.msg
       return Object.assign({}, state, { [toUser]: state[toUser].concat({from: fromUser, content}) })
     default:

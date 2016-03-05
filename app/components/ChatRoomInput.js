@@ -6,7 +6,7 @@ export default class ChatInput extends Component {
   handleInputChange (e) {
     const { userId, loggedInUser } = this.props
     if (e.keyCode === 13) {
-      sendMessage({ content: this.refs.msg.value, toUser: userId, fromUser: loggedInUser.userId })
+      sendMessage({ content: this.refs.msg.value, toUser: userId, fromUser: loggedInUser.user.userId })
       this.refs.msg.value = ''
     }
   }
