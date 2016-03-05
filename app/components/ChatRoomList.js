@@ -9,7 +9,7 @@ export default class FriendsList extends Component {
       <ul className="people" >
         {
           _.map(users, (user, userId) => {
-            if (loggedInUser.userId === userId) return null
+            if (loggedInUser.user.userId === userId) return null
             return (
               <Link to={ `/chat/users/${userId}` } key={ user.name } >
                 <li className="person" data-chat="person1">
