@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import deepFreeze from 'deep-freeze'
-import { SIGN_UP_FAILURE, SIGN_UP_REQUEST, SIGN_UP_SUCCESS } from '../../constants/ActionTypes'
+import { SIGN_UP_FAILURE, SIGN_UP_REQUEST, SIGN_UP_SUCCESS, LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS } from '../../constants/ActionTypes'
 
 const initialState = {
   isFetching: false,
@@ -61,7 +61,3 @@ export function auth(state = initialState, action) {
 
   }
 }
-
-// case ADD_USER:
-//   const { user, userId } = action.user
-//   return { username: user, userId: userId }

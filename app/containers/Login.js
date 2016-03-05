@@ -2,13 +2,16 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Link, Navigation } from 'react-router'
 import { FormRow, FormField, FormInput } from 'elemental'
-import { ADD_USER } from '../redux/actions/actions'
-import { addUser } from '../lib/emit'
+// import { addUser } from '../lib/emit'
+import { loginUser } from '../redux/actions/authActions'
 
 export default class Login extends Component {
 
   handleSubmit (e) {
-    addUser(this.refs.username.value)
+    const username = this.refs.username
+    const password = this.refs.password
+    const creds = { username: username.value.trim(), password: password.value.trim() }
+    loginUser(creds)
   }
 
   render() {

@@ -48,6 +48,8 @@ const signUpFailure = (msg) => {
 */
 
 export function loginUser(creds) {
+  console.log("loginUser actionCreator----->")
+  console.log("creds----->", creds)
   let config = {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
