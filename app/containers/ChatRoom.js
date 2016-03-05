@@ -13,6 +13,10 @@ export default class ChatRoom extends Component {
     socket.on('directMessage', (msg) => {
       dispatch({ type: 'RECEIVE_MESSAGE', msg })
     })
+    socket.on('addUser', (user) => {
+      console.log('User added---->>>', user)
+      dispatch({ type: 'ADD_USER', user })
+    })
   }
 
   render() {

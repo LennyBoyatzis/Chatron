@@ -1,6 +1,7 @@
 import { push } from 'react-router-redux'
 import { SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_REQUEST, LOGOUT_SUCCESS } from '../../constants/ActionTypes'
 import { BASE_URL } from '../../constants/App'
+import { addUser } from '../../lib/emit'
 
 
 /**
@@ -70,6 +71,7 @@ export function loginUser(creds) {
         } else {
           localStorage.setItem('id_token', user.id_token)
           dispatch(loginSuccess(user))
+          addUser(user)
           dispatch(push('/chat/users'))
         }
     }).catch(err => console.log("Error: ", err))
