@@ -1,39 +1,19 @@
 import _ from 'lodash'
 import deepFreeze from 'deep-freeze'
-import { RECEIVE_USERS } from '../actions/actions'
 import { LOGIN_SUCCESS, ADD_USER, FETCH_AVAILABLE_USERS_SUCCESS } from '../../constants/ActionTypes'
 
-const initialState = {
-  'id2123': {
-    name: 'Molly Malone',
-  },
-  'id8910': {
-    name: 'Nick Matenaar',
-  },
-  'id4567': {
-    name: 'Anna Simpson',
-  },
-  'id0000': {
-    name: 'Stanley Boyatzis',
-  }
-}
 
-deepFreeze(initialState)
-
-export function users(state = initialState, action) {
+export function users(state = {}, action) {
   switch (action.type) {
 
     case FETCH_AVAILABLE_USERS_SUCCESS:
-      console.log('Actions----->', action)
-      return state
-    case RECEIVE_USERS:
       const { users } = action
-      return Object.assign({}, state, users )
+      return _.keyBy(users, 'userId')
     case LOGIN_SUCCESS:
       const { username, userId } = action.user
-      return Object.assign({}, state, { [userId]: {name: username} })
+      return Object.assign({}, state, { [userId]: {username: username} })
     case ADD_USER:
-      return Object.assign({}, state, { [action.user.userId]: {name: action.user.username} })
+      return Object.assign({}, state, { [action.user.userId]: {username: action.user.username} })
     default:
       return state
   }

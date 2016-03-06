@@ -5,11 +5,12 @@ import Message from './Message'
 export default class ChatRoomWindow extends Component {
   render() {
     const { messages, users, auth } = this.props
+    console.log('messages----->', messages)
     return (
       <div>
         { (messages && messages.length > 0) ? messages.map((message, i) => {
           return (
-            <Message loggedInUser={auth.user.userId} fromUser={ message.from } content={ message.content } key={ i }/>
+            <Message loggedInUser={ auth.user.userId } fromUser={ message.from } content={ message.content } key={ i }/>
           )
         }) : null }
       </div>
