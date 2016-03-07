@@ -3,8 +3,8 @@ import { RECEIVE_MESSAGE, ADD_USER, FETCH_AVAILABLE_USERS_REQUEST, FETCH_AVAILAB
 import { browserHistory } from 'react-router'
 import { BASE_URL } from '../../constants/App'
 
-export function receiveMessage(message) {
-  return { type: RECEIVE_MESSAGE, message }
+export function receiveMessage(message, auth) {
+  return { type: RECEIVE_MESSAGE, message, auth }
 }
 
 export function addUser(user) {
@@ -12,7 +12,6 @@ export function addUser(user) {
 }
 
 export function fetchAvailableUsers() {
-  console.log("We are fetching all available users")
 
   let config = {
     method: 'GET',
@@ -25,7 +24,6 @@ export function fetchAvailableUsers() {
       .then(response => response.json())
       .then(response => {
         if (response.err) return dispatch(fetchAvailableUsersFailure())
-        console.log("response----->>>>", response)
         dispatch(fetchAvailableUsersSuccess(response))
       }).catch(err => { throw err })
   }

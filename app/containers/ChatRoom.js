@@ -9,12 +9,11 @@ import socket from '../lib/socket'
 export default class ChatRoom extends Component {
 
   componentDidMount() {
-    const { dispatch } = this.props
+    const { dispatch, auth } = this.props
     socket.on('directMessage', (msg) => {
-      dispatch({ type: 'RECEIVE_MESSAGE', msg })
+      dispatch({ type: 'RECEIVE_MESSAGE', msg, auth })
     })
     socket.on('addUser', (user) => {
-      console.log('User added---->>>', user)
       dispatch({ type: 'ADD_USER', user })
     })
   }
