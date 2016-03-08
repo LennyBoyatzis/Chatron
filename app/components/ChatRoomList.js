@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import _ from 'lodash'
 import { Link } from 'react-router'
+import { Glyph } from 'elemental'
 import CurrentUserInfo from './CurrentUserInfo'
 
 export default class ChatRoomList extends Component {
@@ -9,6 +10,10 @@ export default class ChatRoomList extends Component {
     return (
       <div>
         <ul className="people" >
+          <li className="people__header">
+
+            <Glyph icon="person"/><span className="people__headline">Currently Online</span>
+          </li>
           {
             _.map(users, (user, userId) => {
               if (loggedInUser.user.userId === userId) return null
