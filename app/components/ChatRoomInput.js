@@ -4,9 +4,9 @@ import { sendMessage } from '../lib/emit'
 export default class ChatInput extends Component {
 
   handleInputChange (e) {
-    const { userId, loggedInUser } = this.props
+    const { toUser, loggedInUser } = this.props
     if (e.keyCode === 13) {
-      sendMessage({ content: this.refs.msg.value, toUser: userId, fromUser: loggedInUser.user.userId })
+      sendMessage({ content: this.refs.msg.value, toUser: toUser, fromUser: loggedInUser.user.userId })
       this.refs.msg.value = ''
     }
   }

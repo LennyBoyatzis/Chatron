@@ -197,6 +197,7 @@ html, body {
 @width1: 100%; // Appears 4 times
 
 .friends-list {
+  background-color: rgba(255,255,255, 0.5);
   padding: 0px;
   .people {
   	width: @width1;
@@ -218,18 +219,28 @@ html, body {
   			transform: translate(-50%, 0);
   			width: 100%;
   		}
-  		img {
+  		.person__logo {
+        background-color: grey;
+        color: #fff;
+        font-size: 1.5em;
+        text-align: center;
+        padding-top: 5px;
   			border-radius: 50%;
   			float: left;
   			height: 40px;
   			margin-right: 12px;
   			width: 40px;
+        &:after {
+          margin-left: 10px;
+        }
   		}
   		.name {
   			color: #1a1a1a;
   			font-size: 14px;
   			font-weight: bold;
   			line-height: 22px;
+        position: absolute;
+        margin-top: 10px;
   		}
   		.time {
   			background-color: @color4;
@@ -250,10 +261,26 @@ html, body {
   			width: 70%;
   		}
   		&:hover {
-  			background-color: @color3;
+        .person__logo {
+          background-color: grey;
+          color: #fff;
+          font-size: 1.5em;
+          text-align: center;
+          padding-top: 5px;
+          border-radius: 50%;
+          float: left;
+          height: 40px;
+          margin-right: 12px;
+          width: 40px;
+          &:after {
+            margin-left: 10px;
+          }
+        }
+  			background-color: #eceff1;
   			span {
   				background: transparent;
-  				color: @color4;
+  				color: #000;
+          text-decoration: none;
   			}
   			after {
   				display: none;
@@ -263,9 +290,23 @@ html, body {
   	.person.active {
   		background-color: @color3;
   		border: 0;
-  		margin-left: -15px;
   		margin-top: -1px;
   		width: @width1;
+      .person__logo {
+        background-color: #fff;
+        color: grey;
+        font-size: 1.5em;
+        text-align: center;
+        padding-top: 5px;
+        border-radius: 50%;
+        float: left;
+        height: 40px;
+        margin-right: 12px;
+        width: 40px;
+        &:after {
+          margin-left: 10px;
+        }
+      }
   		span {
   			background: transparent;
   			color: @color4;
@@ -315,9 +356,6 @@ html, body {
     border-radius: 2px;
     border: 1px solid #e5e5e5;
   }
-  .FileDragAndDrop {
-    margin-top: 15px;
-  }
   .form__button {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -340,4 +378,12 @@ html, body {
   display: block;
   text-align: center;
   margin-top: 15px;
+}
+
+.user-info {
+  position: fixed;
+  bottom: 0px;
+  padding: 10px;
+  display: block;
+  width: auto;
 }

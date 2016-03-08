@@ -20,14 +20,15 @@ export default class ChatRoom extends Component {
 
   render() {
     const { users, params, auth } = this.props
+    console.log('params.userId---->', params.userId)
     return (
       <div className="chatroom">
         <div className="column friends-list">
-          <ChatRoomList loggedInUser={auth} users={ users } />
+          <ChatRoomList loggedInUser={auth} users={ users } toUser={ params } />
         </div>
         <div className="column chat-box">
           { this.props.children }
-          <ChatRoomInput loggedInUser={auth} userId={ params.userId } />
+          <ChatRoomInput loggedInUser={auth} toUser={ params.userId } />
         </div>
       </div>
     )
