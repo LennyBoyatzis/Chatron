@@ -11,8 +11,7 @@ export default class ChatRoomList extends Component {
       <div>
         <ul className="people" >
           <li className="people__header">
-
-            <Glyph icon="person"/><span className="people__headline">Currently Online</span>
+            <Glyph icon="organization"/><span className="people__headline">Currently Online</span>
           </li>
           {
             _.map(users, (user, userId) => {
