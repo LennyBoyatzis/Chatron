@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Message from './Message'
 
+
 export default class ChatRoomWindow extends Component {
   render() {
     const { messages, users, auth } = this.props
     return (
+
       <div>
         { (messages && messages.length > 0) ? messages.map((message, i) => {
           return (

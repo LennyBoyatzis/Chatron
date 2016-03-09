@@ -4,6 +4,7 @@ import * as actions from '../redux/actions/actions'
 import ChatRoomWindow from '../components/ChatRoomWindow'
 import ChatRoomList from '../components/ChatRoomList'
 import ChatRoomInput from '../components/ChatRoomInput'
+import NavBar from '../components/NavBar'
 import socket from '../lib/socket'
 
 export default class ChatRoom extends Component {
@@ -27,8 +28,11 @@ export default class ChatRoom extends Component {
           <ChatRoomList loggedInUser={auth} users={ users } toUser={ params } />
         </div>
         <div className="column chat-box">
-          { this.props.children }
-          <ChatRoomInput loggedInUser={auth} toUser={ params.userId } />
+        <NavBar />
+          <div className="chat-room-window">
+            { this.props.children }
+            <ChatRoomInput loggedInUser={auth} toUser={ params.userId } />
+          </div>
         </div>
       </div>
     )
