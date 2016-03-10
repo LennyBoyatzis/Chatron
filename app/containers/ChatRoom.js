@@ -17,21 +17,23 @@ export default class ChatRoom extends Component {
     socket.on('addUser', (user) => {
       dispatch({ type: 'ADD_USER', user })
     })
+    socket.on('removeUser', (user) => {
+      dispatch({ type: 'ADD_USER', user })
+    })
   }
 
   render() {
-    const { users, params, auth } = this.props
-    console.log('params.userId---->', params.userId)
+    const { users, params, auth, dispatch } = this.props
     return (
       <div className="chatroom">
         <div className="column friends-list">
-          <ChatRoomList loggedInUser={auth} users={ users } toUser={ params } />
+          <ChatRoomList loggedInUser={ auth } users={ users } toUser={ params } />
         </div>
         <div className="column chat-box">
-        <NavBar />
+        <NavBar loggedInUser={ auth } dispatch={ dispatch }/>
           <div className="chat-room-window">
             { this.props.children }
-            <ChatRoomInput loggedInUser={auth} toUser={ params.userId } />
+            <ChatRoomInput loggedInUser={ auth } toUser={ params.userId } />
           </div>
         </div>
       </div>

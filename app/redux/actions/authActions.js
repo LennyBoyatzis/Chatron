@@ -81,6 +81,7 @@ export function loginUser(creds) {
 }
 
 const loginRequest = (creds) => {
+  console.log('logoutRequest - creds ---->>>', creds)
   return {
     type: LOGIN_REQUEST,
     isFetching: true,
@@ -113,11 +114,23 @@ const loginError = (message) => {
 * @returns { dispatch }
 */
 
-export function logoutUser() {
+export function logoutUser(creds) {
+
+  let config = {
+    method: 'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify(creds)
+  }
+
   return dispatch => {
-    dispatch(logoutRequest())
-    localStorage.removeItem('id_token')
-    dispatch(logoutSucess())
+    dispatch(logoutRequest(creds))
+    return fetch(`${BASE_URL}/api/sessions/create`, config)
+      .then(response => response.json())
+      .then(response => {
+        dispatch(logoutSuccess())
+        localStorage.removeItem('id_token')
+        dispatch(push('/'))
+      }).catch(err => { throw err })
   }
 }
 
@@ -129,7 +142,7 @@ const logoutRequest = () => {
   }
 }
 
-const logoutSucess = () => {
+const logoutSuccess = () => {
   return {
     type: LOGOUT_SUCCESS,
     isFetching: false,

@@ -14,6 +14,8 @@ export function users(state = {}, action) {
       return Object.assign({}, state, { [userId]: {username: username} })
     case ADD_USER:
       return Object.assign({}, state, { [action.user.userId]: {username: action.user.username} })
+    // case REMOVE_USER:
+    //   return Object.assign({}, state, { [action.user.userId]: {username: action.user.username} })
     default:
       return state
   }

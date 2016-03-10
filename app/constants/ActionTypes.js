@@ -1,7 +1,9 @@
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE'
 export const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES'
 export const RECEIVE_USERS = 'RECEIVE_USERS'
+
 export const ADD_USER = 'ADD_USER'
+export const REMOVE_USER = 'REMOVE_USER'
 
 export const SIGN_UP_REQUEST = 'SIGN_UP_REQUEST'
 export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS'

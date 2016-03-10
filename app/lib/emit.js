@@ -7,3 +7,7 @@ module.exports.sendMessage = (message) => {
 module.exports.addUser = (user) => {
   socket.emit('addUser', user)
 }
+
+module.exports.removeUser = (user) => {
+  socket.emit('removeUser', user)
+}

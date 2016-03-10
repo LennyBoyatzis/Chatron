@@ -4,14 +4,14 @@ import { logoutUser } from '../redux/actions/authActions'
 export default class NavBar extends Component {
 
   handleSubmit (e) {
-    const { dispatch } = this.props
-    dispatch(logoutUser(userId));
+    const { dispatch, loggedInUser } = this.props
+    dispatch(logoutUser(loggedInUser.user));
   }
 
   render () {
     return (
       <div className="nav-bar">
-        <span>To:<strong> Lenny</strong></span>
+        <span>To:<strong> { this.props.loggedInUser.user.username }</strong></span>
         <span onClick={ this.handleSubmit.bind(this) } className="right">Logout</span>
       </div>
     )
