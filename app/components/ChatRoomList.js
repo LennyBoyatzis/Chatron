@@ -15,7 +15,7 @@ export default class ChatRoomList extends Component {
           </li>
           {
             _.map(users, (user, userId) => {
-              if (loggedInUser.user.userId === userId) return null
+              if (loggedInUser.user.userId === userId || !user.currentlyOnline) return null
               return (
                 <Link to={ `/chat/users/${userId}` } key={ user.username } >
                   <li className={`person ${userId === toUser.userId ? 'active' : '' }` }>

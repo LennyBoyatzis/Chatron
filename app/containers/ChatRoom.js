@@ -12,13 +12,14 @@ export default class ChatRoom extends Component {
   componentDidMount() {
     const { dispatch, auth } = this.props
     socket.on('directMessage', (msg) => {
+      console.log("receiving two message")
       dispatch({ type: 'RECEIVE_MESSAGE', msg, auth })
     })
     socket.on('addUser', (user) => {
       dispatch({ type: 'ADD_USER', user })
     })
     socket.on('removeUser', (user) => {
-      dispatch({ type: 'ADD_USER', user })
+      dispatch({ type: 'REMOVE_USER', user })
     })
   }
 
@@ -30,7 +31,7 @@ export default class ChatRoom extends Component {
           <ChatRoomList loggedInUser={ auth } users={ users } toUser={ params } />
         </div>
         <div className="column chat-box">
-        <NavBar loggedInUser={ auth } dispatch={ dispatch }/>
+        <NavBar loggedInUser={ auth } dispatch={ dispatch } toUser={ params } users={ users } />
           <div className="chat-room-window">
             { this.props.children }
             <ChatRoomInput loggedInUser={ auth } toUser={ params.userId } />

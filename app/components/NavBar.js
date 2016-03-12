@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { logoutUser } from '../redux/actions/authActions'
 
 export default class NavBar extends Component {
@@ -9,9 +10,11 @@ export default class NavBar extends Component {
   }
 
   render () {
+    const { toUser, users } = this.props
+    const talkingTo = _.find(users, { 'userId': toUser.userId })
     return (
       <div className="nav-bar">
-        <span>To:<strong> { this.props.loggedInUser.user.username }</strong></span>
+        { talkingTo ? <span><strong>To:</strong> { talkingTo.username } </span> : null }
         <span onClick={ this.handleSubmit.bind(this) } className="right">Logout</span>
       </div>
     )

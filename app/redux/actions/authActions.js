@@ -4,7 +4,6 @@ import { BASE_URL } from '../../constants/App'
 import { addUser } from '../../lib/emit'
 import { fetchAvailableUsers } from './actions'
 
-
 /**
 * Action creator which posts the users signup creds and dispatches either
 * signUpFailure or signUpSuccess
@@ -81,7 +80,6 @@ export function loginUser(creds) {
 }
 
 const loginRequest = (creds) => {
-  console.log('logoutRequest - creds ---->>>', creds)
   return {
     type: LOGIN_REQUEST,
     isFetching: true,
@@ -123,10 +121,11 @@ export function logoutUser(creds) {
   }
 
   return dispatch => {
-    dispatch(logoutRequest(creds))
-    return fetch(`${BASE_URL}/api/sessions/create`, config)
-      .then(response => response.json())
-      .then(response => {
+    dispatch(logoutRequest())
+    return fetch(`${BASE_URL}/api/sessions/close`, config)
+      .then(response => response.json().then(user => ({ user, response })))
+      .then(({ user, response }) => {
+        console.log('About to logout...')
         dispatch(logoutSuccess())
         localStorage.removeItem('id_token')
         dispatch(push('/'))

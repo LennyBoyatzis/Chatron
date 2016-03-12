@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600);
 
 @import '../../node_modules/elemental/less/elemental.less';
+// @import '../../public/photon/css/photon.min.css';
 
 /**
 * Less Variables
@@ -183,19 +184,19 @@ html, body {
 .bubble.you {
 	background-color: @color1;
 	color: #ffffff;
-	float: left;
+	float: right;
 	&:before {
 		background-color: @color1;
-		left: -3px;
+		right: -3px;
 	}
 }
 .bubble.me {
 	background-color: @color0;
 	color: #1a1a1a;
-	float: right;
+	float: left;
 	&:before {
 		background-color: @color0;
-		right: -3px;
+		left: -3px;
 	}
 }
 

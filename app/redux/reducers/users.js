@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import deepFreeze from 'deep-freeze'
-import { LOGIN_SUCCESS, ADD_USER, FETCH_AVAILABLE_USERS_SUCCESS } from '../../constants/ActionTypes'
+import { LOGIN_SUCCESS, ADD_USER, FETCH_AVAILABLE_USERS_SUCCESS, REMOVE_USER } from '../../constants/ActionTypes'
 
 
 export function users(state = {}, action) {
@@ -13,9 +13,9 @@ export function users(state = {}, action) {
       const { username, userId } = action.user
       return Object.assign({}, state, { [userId]: {username: username} })
     case ADD_USER:
-      return Object.assign({}, state, { [action.user.userId]: {username: action.user.username} })
-    // case REMOVE_USER:
-    //   return Object.assign({}, state, { [action.user.userId]: {username: action.user.username} })
+      return Object.assign({}, state, { [action.user.userId]: {username: action.user.username, currentlyOnline: true} })
+    case REMOVE_USER:
+      return Object.assign({}, state, { [action.user.userId]: {username: action.user.username, currentlyOnline: false} })
     default:
       return state
   }
