@@ -1,11 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 export default class App extends Component {
   render() {
     return (
       <div className="appWrapper">
-        <img className="centered" src='public/images/chatron-logo.png' width='250px' />
+        { this.props.children }
       </div>
     )
   }
+}
+
+App.propTypes = {
+  children: PropTypes.element.isRequired
 }
