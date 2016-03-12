@@ -26,7 +26,6 @@ module.exports = {
       },
       {
         test   : /\.woff|\.woff2|\.svg|.eot|\.ttf/,
-        // loader : 'url?prefix=font/&limit=10000'
         loader: require.resolve("file-loader") + "?name=../[path][name].[ext]"
       },
       {
