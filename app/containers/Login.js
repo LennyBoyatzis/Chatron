@@ -16,7 +16,7 @@ export default class Login extends Component {
               <input type="password" className="form-control" placeholder="Password" ref="password" />
             </div>
           </form>
-          <a className="form__button">Login</a>
+          <Link to='/chat' className="form__button">Login</Link>
           <Link to='/signup' className="form__link">Not a member? Sign up</Link>
         </div>
       </div>

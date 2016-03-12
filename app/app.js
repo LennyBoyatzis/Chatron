@@ -5,7 +5,7 @@ import { Router, hashHistory, Route, IndexRoute } from 'react-router'
 import App from './containers/App'
 import Login from './containers/Login'
 import Signup from './containers/Signup'
-import Chatroom from './containers/Chat'
+import Chatroom from './containers/Chatroom'
 
 ReactDOM.render((
   <Router history={ hashHistory } >
