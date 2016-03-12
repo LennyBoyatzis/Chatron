@@ -6,7 +6,7 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-        <div className="login-form">
+        <div className="form">
           <img src='public/images/chatron-logo.png' className="chatron-logo" width='250px' />
           <form>
             <div className="form-group">
