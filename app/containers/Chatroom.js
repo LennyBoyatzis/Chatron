@@ -9,6 +9,7 @@ export default class Chatroom extends Component {
         <div className="window-content">
           <div className="pane-group">
             <div className="pane-sm sidebar">
+              <img src='public/images/chatron-logo.png' className="chatron-logo" width='100px' />
               <FriendsList />
             </div>
             <div className="pane">

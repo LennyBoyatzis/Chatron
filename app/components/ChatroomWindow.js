@@ -4,6 +4,10 @@ export default class ChatroomWindow extends Component {
   render() {
     return (
       <div className="form-group chatroom-window">
+      <div className="chatroom-navbar">
+        <strong>To:</strong> Heisenburg
+        <a className="pull-right">Logout</a>
+      </div>
         <div className="form-group chatroom-content">
           <div className="bubble you">Hi, How are you?</div>
           <div className="bubble me">I am good thanks and you?</div>
