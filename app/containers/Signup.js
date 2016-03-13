@@ -3,6 +3,11 @@ import { Link } from 'react-router'
 
 export default class Signup extends Component {
 
+  handleClick() {
+    const { dispatch } = this.props
+    dispatch(signup)
+  },
+
   render() {
     return (
       <div>
@@ -16,10 +21,18 @@ export default class Signup extends Component {
               <input type="password" className="form-control" placeholder="Password" ref="password" />
             </div>
           </form>
-          <a className="form__button">Signup</a>
+          <a className="form__button" onClick={ this.handleClick.bind(this) }>Signup</a>
           <Link to='/' className="form__link">Back to Login</Link>
         </div>
       </div>
     )
   }
 }
+
+function mapStateToProps(state, props) {
+  return {
+    auth: state.auth
+  }
+}
+
+export default connect(mapStateToProps)(Signup)
