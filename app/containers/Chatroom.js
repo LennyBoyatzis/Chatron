@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import FriendsList from '../components/FriendsList'
+import ChatroomWindow from '../components/ChatroomWindow'
 
 export default class Chatroom extends Component {
   render () {
@@ -10,7 +11,9 @@ export default class Chatroom extends Component {
             <div className="pane-sm sidebar">
               <FriendsList />
             </div>
-            <div className="pane">Main Content...</div>
+            <div className="pane">
+              <ChatroomWindow />
+            </div>
           </div>
         </div>
       </div>

@@ -26,7 +26,8 @@ module.exports = {
       },
       {
         test   : /\.woff|\.woff2|\.svg|.eot|\.ttf/,
-        loader: require.resolve("file-loader") + "?name=../[path][name].[ext]"
+        loader: 'file-loader'
+        // loader: require.resolve("file-loader") + "?name=../[path][name].[ext]"
       },
       {
         test: /\.less$/,
