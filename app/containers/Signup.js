@@ -11,11 +11,21 @@ export default class Signup extends Component {
     dispatch(signup({ username: this.refs.username.value, password: this.refs.password.value}))
   }
 
+  renderErrorMsg() {
+    const { auth } = this.props
+    if (!auth.signUpError) return null
+    return (
+      <p className="danger"><strong>Error:</strong> { auth.signUpErrorMsg }</p>
+    )
+  }
+
   render() {
+    const { auth } = this.props
     return (
       <div>
         <div className="form">
           <img src='public/images/chatron-logo.png' className="chatron-logo" width='250px' />
+          { !auth.signUpSuccess ? this.renderErrorMsg() : null }
           <form>
             <div className="form-group">
               <input type="email" className="form-control" placeholder="Email" ref="username" />
