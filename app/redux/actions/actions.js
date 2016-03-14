@@ -1,3 +1,4 @@
+import { push } from 'react-router-redux'
 import { SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from '../../constants/ActionTypes'
 
 const BASE_URL = 'http://localhost:3001'
