@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
+import { connect } from 'react-redux'
+import { signup } from '../redux/actions/actions.js'
+
 
 export default class Signup extends Component {
 
   handleClick() {
     const { dispatch } = this.props
-    dispatch(signup)
-  },
+    dispatch(signup({ username: this.refs.username.value, password: this.refs.password.value}))
+  }
 
   render() {
     return (

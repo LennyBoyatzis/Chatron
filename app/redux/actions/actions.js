@@ -1,5 +1,7 @@
 import { SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from '../../constants/ActionTypes'
 
+const BASE_URL = 'http://localhost:3001'
+
 /**
 * Action creator which posts the users signup creds and dispatches either
 * signUpFailure or signUpSuccess
