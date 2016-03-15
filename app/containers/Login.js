@@ -1,7 +1,17 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router'
+import { loginUser } from '../redux/actions/authActions'
 
 export default class Login extends Component {
+
+  handleSubmit(e) {
+    const { dispatch } = this.props
+    const username = this.refs.username
+    const password = this.refs.password
+    const creds = { username: username.value.trim(), password: password.value.trim() }
+    dispatch(loginUser(creds));
+  }
 
   render() {
     return (
@@ -16,10 +26,18 @@ export default class Login extends Component {
               <input type="password" className="form-control" placeholder="Password" ref="password" />
             </div>
           </form>
-          <Link to='/chat' className="form__button">Login</Link>
+          <a onClick={this.handleSubmit.bind(this)} className="form__button">Login</a>
           <Link to='/signup' className="form__link">Not a member? Sign up</Link>
         </div>
       </div>
     )
   }
 }
+
+function mapStateToProps(state, props) {
+    return {
+        users: state.users,
+    }
+}
+
+export default connect(mapStateToProps)(Login)
