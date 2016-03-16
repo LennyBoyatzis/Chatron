@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-import { loginUser } from '../redux/actions/authActions'
+import { loginUser } from '../redux/actions/actions'
 
 export default class Login extends Component {
 
@@ -30,6 +30,7 @@ export default class Login extends Component {
           <Link to='/signup' className="form__link">Not a member? Sign up</Link>
         </div>
       </div>
+
     )
   }
 }

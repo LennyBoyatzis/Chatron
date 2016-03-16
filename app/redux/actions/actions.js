@@ -1,5 +1,5 @@
 import { push } from 'react-router-redux'
-import { SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAILURE } from '../../constants/ActionTypes'
+import { SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE } from '../../constants/actionTypes'
 
 const BASE_URL = 'http://localhost:3001'
 
@@ -42,3 +42,69 @@ const signUpSuccess = () => {
 const signUpFailure = (msg) => {
   return { type: SIGN_UP_FAILURE, msg }
 }
+
+/**
+* Action creator which posts the users login creds and dispatches either
+* loginSuccess or loginError
+* @param { creds } user's credentials incl. username && password
+* @returns { dispatch }
+*/
+
+export function loginUser(creds) {
+
+  let config = {
+    method: 'POST',
+    headers: { 'Content-Type':'application/x-www-form-urlencoded' },
+    body: `username=${creds.username}&password=${creds.password}`
+  }
+
+  return dispatch => {
+    dispatch(loginRequest(creds))
+
+    return fetch(`${BASE_URL}/api/sessions/create`, config )
+      .then(response => response.json().then(user => ({ user, response })))
+      .then(({ user, response }) => {
+        if (!response.ok) {
+          dispatch(loginError(user.message))
+          return Promise.reject(user)
+        } else {
+          localStorage.setItem('id_token', user.id_token)
+          dispatch(loginSuccess(user))
+          console.log('Successfully logged in')
+          dispatch(push('/chat'))
+        }
+    }).catch(err => console.log("Error: ", err))
+  }
+}
+
+const loginRequest = (creds) => {
+  return {
+    type: LOGIN_REQUEST,
+    isFetching: true,
+    isAuthenticated: false,
+    creds
+  }
+}
+
+const loginSuccess = (user) => {
+  return {
+    type: LOGIN_SUCCESS,
+    isFetching: false,
+    isAuthenticated: true,
+    id_token: user.id_token,
+    user: user.user
+  }
+}
+
+const loginError = (message) => {
+  return {
+    type: LOGIN_FAILURE,
+    isFetching: false,
+    isAuthenticated: false,
+    message
+  }
+}
+
+//dispatch(fetchAvailableUsers())
+//addUser(user)
+//dispatch(push('/chat/users'))
