@@ -1,5 +1,15 @@
 import { push } from 'react-router-redux'
-import { SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE } from '../../constants/actionTypes'
+import {
+        SIGN_UP_REQUEST,
+        SIGN_UP_SUCCESS,
+        SIGN_UP_FAILURE,
+        LOGIN_REQUEST,
+        LOGIN_SUCCESS,
+        LOGIN_FAILURE,
+        FETCH_AVAILABLE_USERS_REQUEST,
+        FETCH_AVAILABLE_USERS_SUCCESS,
+        FETCH_AVAILABLE_USERS_FAILURE
+      } from '../../constants/actionTypes'
 
 const BASE_URL = 'http://localhost:3001'
 
@@ -108,3 +118,40 @@ const loginError = (message) => {
 //dispatch(fetchAvailableUsers())
 //addUser(user)
 //dispatch(push('/chat/users'))
+
+/**
+* Action creator which fetches available users and dispatches either
+* fetchAvailableUsersSuccess or fetchAvailableUsersFailure
+* @returns { dispatch }
+*/
+
+export function fetchAvailableUsers() {
+
+  let config = {
+    method: 'GET',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+  }
+
+  return dispatch => {
+    dispatch(fetchAvailableUsersRequest())
+    return fetch(`${BASE_URL}/api/user/get`, config)
+      .then(response => response.json())
+      .then(response => {
+        if (response.err) return dispatch(fetchAvailableUsersFailure())
+        dispatch(fetchAvailableUsersSuccess(response))
+      }).catch(err => { throw err })
+  }
+
+}
+
+const fetchAvailableUsersRequest = () => {
+  return { type: FETCH_AVAILABLE_USERS_REQUEST }
+}
+
+const fetchAvailableUsersSuccess = (users) => {
+  return { type: FETCH_AVAILABLE_USERS_SUCCESS, users }
+}
+
+const fetchAvailableUsersFailure = () => {
+  return { type: FETCH_AVAILABLE_USERS_FAILURE }
+}
