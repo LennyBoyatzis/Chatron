@@ -5,6 +5,7 @@ import ChatroomWindow from '../components/ChatroomWindow'
 
 export default class Chatroom extends Component {
   render () {
+    const { users } = this.props
     return (
       <div className="window">
         <div className="window-content">

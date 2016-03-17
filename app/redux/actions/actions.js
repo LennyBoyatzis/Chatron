@@ -80,6 +80,7 @@ export function loginUser(creds) {
         } else {
           localStorage.setItem('id_token', user.id_token)
           dispatch(loginSuccess(user))
+          dispatch(fetchAvailableUsers())
           console.log('Successfully logged in')
           dispatch(push('/chat'))
         }
@@ -115,7 +116,7 @@ const loginError = (message) => {
   }
 }
 
-//dispatch(fetchAvailableUsers())
+
 //addUser(user)
 //dispatch(push('/chat/users'))
 
@@ -134,7 +135,7 @@ export function fetchAvailableUsers() {
 
   return dispatch => {
     dispatch(fetchAvailableUsersRequest())
-    return fetch(`${BASE_URL}/api/user/get`, config)
+    return fetch(`${BASE_URL}/api/users/get`, config)
       .then(response => response.json())
       .then(response => {
         if (response.err) return dispatch(fetchAvailableUsersFailure())
