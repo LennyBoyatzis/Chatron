@@ -2,10 +2,11 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import ChatroomInput from './ChatroomInput'
 import _ from 'lodash'
+import Message from './Message'
 
 export default class ChatroomWindow extends Component {
   render() {
-    const { users, params, auth, dispatch } = this.props
+    const { messages, users, params, auth, dispatch } = this.props
     const talkingTo = _.find(users, { 'userId': params.userId })
 
     return (
@@ -15,10 +16,11 @@ export default class ChatroomWindow extends Component {
           <a className="pull-right">Logout</a>
         </div>
         <div className="form-group chatroom-content">
-          <div className="bubble you">Hi, How are you?</div>
-          <div className="bubble me">I am good thanks and you?</div>
-          <div className="bubble you">Yeah not too bad, glad its the weekend. What you doing this weekend?</div>
-          <div className="bubble me">Weather is great so I'll probably head to the beach</div>
+          { (messages && messages.length > 0) ? messages.map((message, i) => {
+            return (
+              <Message loggedInUser={ auth.user.userId } fromUser={ message.from } content={ message.content } key={ i }/>
+            )
+          }) : null }
         </div>
         <ChatroomInput loggedInUser={ auth } toUser={ params.userId }/>
       </div>
@@ -29,7 +31,8 @@ export default class ChatroomWindow extends Component {
 function mapStateToProps(state, props) {
   return {
     users: state.users,
-    auth: state.auth
+    auth: state.auth,
+    messages: state.messages[props.params.userId]
   }
 }
 
