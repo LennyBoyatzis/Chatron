@@ -9,7 +9,8 @@ export function users(state = {}, action) {
       if (!users) return state
       return _.keyBy(users, 'userId')
     case ADD_USER:
-      return Object.assign({}, state, { [action.user.userId]: {username: action.user.username, currentlyOnline: true} })
+      const { userId, username } = action.user.user
+      return Object.assign({}, state, { [userId]: {username: username, currentlyOnline: true} })
     default:
       return state
   }

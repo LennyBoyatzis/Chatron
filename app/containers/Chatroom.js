@@ -1,30 +1,22 @@
 import React, { Component, PropTypes } from 'react'
+import _ from 'lodash'
 import { connect } from 'react-redux'
 import FriendsList from '../components/FriendsList'
-import ChatroomWindow from '../components/ChatroomWindow'
-import socket from '../lib/socket'
 
 export default class Chatroom extends Component {
 
-  componentDidMount() {
-    const { dispatch } = this.props
-    socket.on('addUser', (user) => {
-      dispatch({ type: 'ADD_USER', user })
-    })
-  }
-
   render () {
-    const { users } = this.props
+    const { users, auth, params } = this.props
     return (
       <div className="window">
         <div className="window-content">
           <div className="pane-group">
             <div className="pane-sm sidebar">
               <img src='public/images/chatron-logo.png' className="chatron-logo" width='100px' />
-              <FriendsList users={ users } />
+              <FriendsList loggedInUser={ auth } users={ users } toUser={ params }/>
             </div>
             <div className="pane">
-              <ChatroomWindow />
+              { this.props.children }
             </div>
           </div>
         </div>
@@ -35,7 +27,8 @@ export default class Chatroom extends Component {
 
 function mapStateToProps(state, props) {
   return {
-    users: state.users
+    users: state.users,
+    auth: state.auth
   }
 }
 

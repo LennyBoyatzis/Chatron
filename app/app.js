@@ -7,6 +7,7 @@ import App from './containers/App'
 import Login from './containers/Login'
 import Signup from './containers/Signup'
 import Chatroom from './containers/Chatroom'
+import ChatroomWindow from './components/ChatroomWindow'
 import configureStore from './redux/store'
 
 const store = configureStore()
@@ -17,7 +18,9 @@ ReactDOM.render((
       <Route path='/' component={ App } >
         <IndexRoute component={ Login } />
         <Route path='/signup' component={ Signup } />
-        <Route path='/chat' component={ Chatroom } />
+        <Route path='/chat' component={ Chatroom } >
+          <Route path='/chat/:userId' component={ ChatroomWindow } />
+        </Route>
       </Route>
     </Router>
   </Provider>
