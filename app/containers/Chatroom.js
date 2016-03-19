@@ -2,8 +2,17 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import FriendsList from '../components/FriendsList'
 import ChatroomWindow from '../components/ChatroomWindow'
+import socket from '../lib/socket'
 
 export default class Chatroom extends Component {
+
+  componentDidMount() {
+    const { dispatch } = this.props
+    socket.on('addUser', (user) => {
+      dispatch({ type: 'ADD_USER', user })
+    })
+  }
+
   render () {
     const { users } = this.props
     return (

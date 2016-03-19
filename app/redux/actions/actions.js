@@ -8,7 +8,8 @@ import {
         LOGIN_FAILURE,
         FETCH_AVAILABLE_USERS_REQUEST,
         FETCH_AVAILABLE_USERS_SUCCESS,
-        FETCH_AVAILABLE_USERS_FAILURE
+        FETCH_AVAILABLE_USERS_FAILURE,
+        ADD_USER
       } from '../../constants/actionTypes'
 
 const BASE_URL = 'http://localhost:3001'
@@ -155,4 +156,8 @@ const fetchAvailableUsersSuccess = (users) => {
 
 const fetchAvailableUsersFailure = () => {
   return { type: FETCH_AVAILABLE_USERS_FAILURE }
+}
+
+export function addUser(user) {
+  return { type: ADD_USER, user }
 }
