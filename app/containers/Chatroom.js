@@ -2,8 +2,19 @@ import React, { Component, PropTypes } from 'react'
 import _ from 'lodash'
 import { connect } from 'react-redux'
 import FriendsList from '../components/FriendsList'
+import socket from '../lib/socket'
+import { receiveMessage } from '../redux/actions/actions'
+import { RECEIVE_MESSAGE } from '../constants/actionTypes'
 
 export default class Chatroom extends Component {
+
+  componentDidMount() {
+    const { auth, dispatch } = this.props
+    socket.on('directMessage', (msg) => {
+      console.log("sending through auth", auth)
+      dispatch({ type: RECEIVE_MESSAGE, msg, auth })
+    })
+  }
 
   render () {
     const { users, auth, params } = this.props

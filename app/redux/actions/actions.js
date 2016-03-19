@@ -161,7 +161,3 @@ const fetchAvailableUsersFailure = () => {
 export function adduser(user) {
   return { type: ADD_USER, user }
 }
-
-export function receiveMessage(message, auth) {
-  return { type: RECEIVE_MESSAGE, message, auth }
-}
