@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import socket from '../lib/socket'
-import { adduser, recieveUser } from '../redux/actions/actions'
+import { adduser, receiveMessage } from '../redux/actions/actions'
 import { ADD_USER, RECEIVE_MESSAGE } from '../constants/actionTypes'
 
 export default class App extends Component {
@@ -12,7 +12,7 @@ export default class App extends Component {
       dispatch(adduser({ type: ADD_USER, user }))
     })
     socket.on('directMessage', (msg) => {
-      dispatch({ type: RECEIVE_MESSAGE, msg, auth })
+      dispatch(receiveMessage({ type: RECEIVE_MESSAGE, msg, auth }))
     })
   }
 
