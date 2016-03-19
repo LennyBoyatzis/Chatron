@@ -10,7 +10,9 @@ import {
         FETCH_AVAILABLE_USERS_SUCCESS,
         FETCH_AVAILABLE_USERS_FAILURE,
         ADD_USER,
-        RECEIVE_MESSAGE
+        RECEIVE_MESSAGE,
+        LOGOUT_REQUEST,
+        LOGOUT_SUCCESS
       } from '../../constants/actionTypes'
 
 const BASE_URL = 'http://localhost:3001'
@@ -118,8 +120,47 @@ const loginError = (message) => {
 }
 
 
-//addUser(user)
-//dispatch(push('/chat/users'))
+/**
+* Action creator which is responsible for logging the user out. It removes the local storage token and dispatches LOGOUT_SUCCESS action
+* @returns { dispatch }
+*/
+
+export function logoutUser(creds) {
+
+  let config = {
+    method: 'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify(creds)
+  }
+
+  return dispatch => {
+    dispatch(logoutRequest())
+    return fetch(`${BASE_URL}/api/sessions/close`, config)
+      .then(response => response.json().then(user => ({ user, response })))
+      .then(({ user, response }) => {
+        console.log('About to logout...')
+        dispatch(logoutSuccess())
+        localStorage.removeItem('id_token')
+        dispatch(push('/'))
+      }).catch(err => { throw err })
+  }
+}
+
+const logoutRequest = () => {
+  return {
+    type: LOGOUT_REQUEST,
+    isFetching: true,
+    isAuthenticated: true
+  }
+}
+
+const logoutSuccess = () => {
+  return {
+    type: LOGOUT_SUCCESS,
+    isFetching: false,
+    isAuthenticated: false
+  }
+}
 
 /**
 * Action creator which fetches available users and dispatches either

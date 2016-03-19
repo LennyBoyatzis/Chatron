@@ -11,7 +11,6 @@ export default class Chatroom extends Component {
   componentDidMount() {
     const { auth, dispatch } = this.props
     socket.on('directMessage', (msg) => {
-      console.log("sending through auth", auth)
       dispatch({ type: RECEIVE_MESSAGE, msg, auth })
     })
   }
