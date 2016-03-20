@@ -1,4 +1,4 @@
-#Chatron - An Electron, React, Redux chat application
+##Chatron - An Electron, React, Redux chat application
 
 ![alt tag](./public/images/chatron.gif)
 
