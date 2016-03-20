@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import socket from '../lib/socket'
 import { adduser } from '../redux/actions/actions'
-import { ADD_USER } from '../constants/actionTypes'
+import { ADD_USER, REMOVE_USER } from '../constants/actionTypes'
 
 export default class App extends Component {
 
@@ -10,6 +10,9 @@ export default class App extends Component {
     const { dispatch } = this.props
     socket.on('addUser', (user) => {
       dispatch(adduser({ type: ADD_USER, user }))
+    })
+    socket.on('removeUser', (user) => {
+      dispatch({ type: 'REMOVE_USER', user })
     })
   }
 

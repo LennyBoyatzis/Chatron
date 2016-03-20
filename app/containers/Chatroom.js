@@ -15,8 +15,14 @@ export default class Chatroom extends Component {
     })
   }
 
+  handleLogout (e) {
+    const { dispatch, auth } = this.props
+    dispatch(logoutUser(auth.user));
+  }
+
   render () {
     const { users, auth, params } = this.props
+    const talkingTo = _.find(users, { 'userId': params.userId })
     return (
       <div className="window">
         <div className="window-content">
@@ -26,6 +32,10 @@ export default class Chatroom extends Component {
               <FriendsList loggedInUser={ auth } users={ users } toUser={ params }/>
             </div>
             <div className="pane">
+              <div className="chatroom-navbar">
+                { talkingTo ? <span><strong>To:</strong> { talkingTo.username } </span> : null }
+                <a className="pull-right" onClick={ this.handleLogout.bind(this) }>Logout</a>
+              </div>
               { this.props.children }
             </div>
           </div>
