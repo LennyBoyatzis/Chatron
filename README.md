@@ -1,4 +1,3 @@
 ##Chatron
 
-![alt tag](http://i.giphy.com/E3qyckt1LMVmU.gif =400x)
-
+![alt tag](./public/images/chatron.gif)
