@@ -1,4 +1,4 @@
 ##Chatron
 
-![alt tag](http://i.giphy.com/E3qyckt1LMVmU.gif =100%)
+![alt tag](http://i.giphy.com/E3qyckt1LMVmU.gif =400x)
 
