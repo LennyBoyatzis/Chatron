@@ -4,27 +4,41 @@
 
 ##Install
 
-First, clone this repo (electron app)
+Clone this repository
 
 `git clone https://github.com/LennyBoyatzis/Chatron.git`
 
-Second, clone this other repo (backend)
+##Running the Chatron Backend
 
-`https://github.com/LennyBoyatzis/Chatron-Backend.git`
+To run the backend navigate into the Backend directory
 
-cd into both directories and run:
+```
+cd Backend
+```
 
-`npm install`
+Now install the necessary node modules with
 
-##Run
+```
+npm install
+```
 
-To run the electron app we are going to run the following two commands in separate console tabs
+##Running the Electron Application
+
+Note: The backend with need to be running for the electron app to work
+
+To run the completed version of the electron app navigate into the Complete directory
+
+```
+cd Complete
+```
+
+In two separate console tabs build and run the project with the following commands
 
 ```
 npm run watch
 npm start
 ```
 
-Now we need to open a third console tab and run the backend with the command:
+In summary you should have 3 console tabs open to run this application.
 
-`node index.js`
+![alt tag](./Complete/public/images/running-complete.png)
