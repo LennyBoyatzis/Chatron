@@ -38,7 +38,3 @@ In two separate console tabs build and run the project with the following comman
 npm run watch
 npm start
 ```
-
-In summary you should have 3 console tabs open to run this application.
-
-![alt tag](./Complete/public/images/running-complete.png)
