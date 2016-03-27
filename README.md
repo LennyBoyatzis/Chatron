@@ -1,6 +1,6 @@
 ##Chatron - An Electron, React, Redux chat application
 
-![alt tag](./public/images/chatron.gif)
+![alt tag](./Complete/public/images/chatron.gif)
 
 ##Install
 
@@ -28,6 +28,3 @@ npm start
 Now we need to open a third console tab and run the backend with the command:
 
 `node index.js`
-
-
-
