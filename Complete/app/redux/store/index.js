@@ -12,12 +12,10 @@ const logger = createLogger({
   collapsed: true
 });
 
-const createStoreWithMiddleWare = compose(
-  applyMiddleware(thunk, reduxRouterMiddleware, logger)
-)(createStore)
+const middleware = applyMiddleware(thunk, reduxRouterMiddleware, logger)
 
 export default function configureStore(initialState) {
-  const store = createStoreWithMiddleWare(rootReducer, initialState)
+  const store = createStore(rootReducer, initialState, middleware)
 
   if (module.hot) {
     module.hot.accept('../reducers', () =>
