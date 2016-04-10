@@ -52,3 +52,5 @@ export function auth(state = initialState, action) {
       return state
   }
 }
+
+{/*......Sign up actions and action creator code above.......*/}
